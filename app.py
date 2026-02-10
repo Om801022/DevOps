@@ -4,14 +4,20 @@ import os
 
 app = Flask(__name__)
 
+# Redis configuration
 redis_host = os.getenv("REDIS_HOST", "localhost")
-r=redis.Redis(host=redis_host, port=6379)
+redis_port = int(os.getenv("REDIS_PORT", 6379))
+
+r = redis.Redis(
+    host=redis_host,
+    port=redis_port,
+    decode_responses=True
+)
 
 @app.route("/")
 def home():
-	count = r.incr("hits")
-	return f"Hello For {count} times."
-	return f"Hello For {count} times."
+    count = r.incr("hits")
+    return f"Hello! This page has been visited {count} times."
 
-if __name__=="__main__":
-	app.run(host="0.0.0.0", port=5000)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
