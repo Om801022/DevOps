@@ -16,7 +16,7 @@ jobs:
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.om801022 }}
-          password: ${{ secrets.Om@8010221750 }}
+          password: ${{ secrets.Okk801022 }}
 
       - name: Build Docker image
         run: docker build -t ${{ secrets.om801022 }}/docker-web-app:latest .
