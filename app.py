@@ -11,6 +11,7 @@ r=redis.Redis(host=redis_host, port=6379)
 def home():
 	count = r.incr("hits")
 	return f"Hello For {count} times."
+	return f"Hello For {count} times."
 
 if __name__=="__main__":
 	app.run(host="0.0.0.0", port=5000)
